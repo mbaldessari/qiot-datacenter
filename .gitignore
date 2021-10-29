@@ -357,3 +357,4 @@ MigrationBackup/
 
 *.tgz
 /amq-streams-1.8.0-ocp-install-examples/
+/test/
