@@ -49,7 +49,7 @@ helm install ocp-pre-install ./ocp-pre-install --create-namespace --namespace ma
 2. Influxdb2
 3. Mongo
 4. PostgreSQL
-5. Create Vault issuer [WIP]
+5. Create Vault issuer
 
 ```
 export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
