@@ -8,5 +8,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.postgresql.storageCapacity }}
-  storageClassName: manual
-  volumeName: postgresql-pv

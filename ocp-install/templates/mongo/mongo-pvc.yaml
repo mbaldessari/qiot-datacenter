@@ -8,5 +8,3 @@ spec:
   resources:
     requests:
       storage: {{ .Values.mongo.storageCapacity }}
-  storageClassName: manual
-  volumeName: mongodb-pv
