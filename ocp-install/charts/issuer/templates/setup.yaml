@@ -19,7 +19,6 @@ spec:
       labels:
         {{- include "issuer.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "issuer.serviceAccountName" . }}
       restartPolicy: Never
       containers:
       - name: init
@@ -31,10 +30,9 @@ spec:
         - name: VAULT_ADDR
           value: {{ .Values.issuer.vault.server }}
         command:
-        - /bin/bash
+        - /bin/sh
         - '-c'
         - |
-          #!/bin/bash
 
           if [ "$#" -ne 1 ]; then
               echo "Missing Projects"
@@ -45,7 +43,7 @@ spec:
           export PKI=${PROJECT}-pki
           export DOMAIN=${PROJECT}.$BASE_DOMAIN
           export ROLE=${PROJECT}-$BASE_DOMAIN
-          export SERVICE_ACCOUNT=${PROJECT}-issuer
+          export SERVICE_ACCOUNT={{ include "issuer.serviceAccountName" . }}
           export WILDCARD_DOMAIN={{ .Values.wildcardDomain }}
 
           echo "Setup on ${PROJECT}"

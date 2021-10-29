@@ -7,17 +7,15 @@
 
 ```
 export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
-oc new-project hashicorp
-helm install vault ocp-pre-install --dependency-update --set vault.server.route.host=vault.${WILDCARD} -n hashicorp
+helm install vault ocp-pre-install --dependency-update --create-namespace --set vault.server.route.host=vault.${WILDCARD} -n hashicorp
 ```
 >
 > VAULT_TOKEN and KEYS are on a secret in the hashicorp namespace.
 >
 
 >
-> A CronJob check the sealed status and in case is sealed will automatically unseal it.
+> A CronJob checks the sealed status, in case the status is sealed will automatically unseal it.
 >
-
 
 # OCP Install Chart
 
@@ -28,6 +26,5 @@ helm install vault ocp-pre-install --dependency-update --set vault.server.route.
 5. Create Vault issuer
 
 ```
-oc new-project manufacturing-dev
-helm install core ocp-install --dependency-update -n manufacturing-dev
+helm install core ocp-install --dependency-update --create-namespace --set issuer.wildcardDomain=${WILDCARD} -n manufacturing-dev
 ```
