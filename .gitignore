@@ -353,3 +353,4 @@ MigrationBackup/
 
 .history/
 /.project
+/a-mq-streams/
