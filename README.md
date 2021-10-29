@@ -30,7 +30,7 @@ helm install vault ocp-vault-install --dependency-update --create-namespace --se
 2. Influxdb2
 3. Mongo
 4. PostgreSQL
-5. Create Vault issuer [WIP]
+5. Create Vault issuer
 
 ```
 export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com

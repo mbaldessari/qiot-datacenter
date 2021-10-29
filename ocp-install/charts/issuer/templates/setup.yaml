@@ -43,7 +43,8 @@ spec:
           export PKI=${PROJECT}-pki
           export DOMAIN=${PROJECT}.$BASE_DOMAIN
           export ROLE=${PROJECT}-$BASE_DOMAIN
-          export SERVICE_ACCOUNT={{ include "issuer.serviceAccountName" . }}
+          # In future create a dedicate SA during project provision
+          export SERVICE_ACCOUNT=default
           export WILDCARD_DOMAIN={{ .Values.wildcardDomain }}
 
           echo "Setup on ${PROJECT}"
