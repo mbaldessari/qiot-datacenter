@@ -29,4 +29,5 @@ helm install vault ocp-pre-install --dependency-update --set vault.server.route.
 
 ```
 oc new-project manufacturing-dev
+helm install core ocp-install --dependency-update -n manufacturing-dev
 ```

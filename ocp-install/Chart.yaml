@@ -4,3 +4,9 @@ description: Helm chart to deploy software infrastructure services on the Datace
 type: application
 version: 0.0.1
 appVersion: "1.0.0"
+dependencies:
+  - name: influxdb2
+    version: 1.0.16
+    condition: influxdb2.enabled
+    tags:
+      - influxdb2

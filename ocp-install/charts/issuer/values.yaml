@@ -1,0 +1,23 @@
+# Default values for issuer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+baseDomain: qiot-project.io
+wildcardDomain: ""
+
+serviceAccount:
+  create: true
+  annotations:
+    "helm.sh/hook": pre-install,pre-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "1"
+
+issuer:
+  create: true
+  vault:
+    namespace: hashicorp
+    secret: vault-vault-bootstrap
+    server: https://vault-internal.hashicorp.svc.cluster.local:8200
+    image:
+      repository: "hashicorp/vault"
+      tag: "1.8.4"

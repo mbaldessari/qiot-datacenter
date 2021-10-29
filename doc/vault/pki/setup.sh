@@ -4,7 +4,7 @@ if [ "$#" -ne 1 ]; then
     echo "Missing Projects"
 fi
 
-export BASE_DOMAIN=${3:-unconf.io}
+export BASE_DOMAIN=${3:-qiot-project.io}
 export PROJECT=$1
 export PKI=${PROJECT}-pki
 export DOMAIN=${PROJECT}.$BASE_DOMAIN

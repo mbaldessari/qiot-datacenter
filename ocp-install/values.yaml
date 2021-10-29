@@ -4,43 +4,16 @@ name: manufacturing-datacenter-install
 certmanager:
   version: cert-manager.v1.6.0
   
-########## influxdb2 ##########
-image:
-  repository: docker.io/influxdb
-  pullPolicy: IfNotPresent
-podAnnotations: {}
-nameOverride: ""
-fullnameOverride: ""
-resources: {}
-nodeSelector: {}
-tolerations: []
-affinity: {}
-securityContext: {}
-adminUser:
-  create: true
-  organization: "qiot"
-  bucket: "manufacturing"
-  user: "qiotmanufacturing"
-  retention_policy: "0s"
-  password: "qiotmanufacturingpassword"
-  token: "qiotmanufacturinginfluxdbtoken"
-persistence:
-  enabled: true
-  accessMode: ReadWriteOnce
-  size: 100Gi
-  mountPath: /var/lib/data
-service:
-  type: ClusterIP
-  port: 80
-  targetPort: 8086
-  annotations: {}
-  labels: {}
-  portName: http
-ingress:
-  enabled: false
-  hostname: influxdb.foobar.com
-  annotations: {}
-  path: /
-pdb:
-  create: true
-  minAvailable: 1
+# Influxdb2
+influxdb2:
+  enabled: True
+  adminUser:
+    create: true
+    organization: "qiot"
+    bucket: "manufacturing"
+    user: "qiotmanufacturing"
+    retention_policy: "0s"
+    password: "qiotmanufacturingpassword"
+    token: "qiotmanufacturinginfluxdbtoken"
+  pdb:
+    create: False
