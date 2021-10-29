@@ -26,7 +26,7 @@ helm install vault ocp-vault-install --dependency-update --create-namespace --se
 
 # OCP Install Chart
 
-
+1. Kafka
 2. Influxdb2
 3. Mongo
 4. PostgreSQL
