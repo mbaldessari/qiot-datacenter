@@ -1,9 +1,5 @@
 name: manufacturing-datacenter-install
 
-########## Cert Manager Operator OLM ##########
-certmanager:
-  version: cert-manager.v1.6.0
-
 ########## mongo ##########
 mongo:
   path: "/var/hpvolumes/mongodb"

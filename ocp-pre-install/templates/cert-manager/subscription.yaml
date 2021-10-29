@@ -9,4 +9,4 @@ spec:
   name: cert-manager
   source: community-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: {{ .Values.certmanager.version }}
+  startingCSV: {{ .Values.certmanager.startingCSV }}
