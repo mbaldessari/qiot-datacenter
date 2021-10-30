@@ -20,16 +20,16 @@ oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 helm uninstall ocp-srv-install --namespace manufacturing-dev
 helm uninstall ocp-install --namespace manufacturing-dev
 helm uninstall ocp-olm-install --namespace manufacturing-dev
+oc delete pvc --all --namespace manufacturing-dev
+oc delete project manufacturing-dev
+
 helm uninstall vault --namespace hashicorp
 oc delete pvc --all --namespace hashicorp
 oc delete secret vault-vault-bootstrap  --namespace hashicorp
-oc delete project manufacturing-dev
 oc delete project hashicorp
 ```
 
 # OCP Vault chart
-
-## Vault
 
 1. Chart Installation Vault
 3. Vault Bootstrap (init and unsealed)
@@ -47,7 +47,7 @@ helm install vault ./ocp-vault-install --dependency-update --create-namespace --
 >
 
 
-## OLM
+# OLM
 
 1. Cert Manager
 2. AMQ Streams
@@ -69,30 +69,4 @@ export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
 helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcardDomain=${WILDCARD} --namespace manufacturing-dev
 ```
 
-
-
-Error: failed to write config to path "/etc/influxdb2/influx-configs": open /etc/influxdb2/influx-configs: permission denied
-See 'influx setup -h' for help
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# OCP Service Install Chart
