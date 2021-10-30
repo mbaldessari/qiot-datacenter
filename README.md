@@ -71,7 +71,8 @@ helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcard
 
 
 
-
+Error: failed to write config to path "/etc/influxdb2/influx-configs": open /etc/influxdb2/influx-configs: permission denied
+See 'influx setup -h' for help
 
 
 

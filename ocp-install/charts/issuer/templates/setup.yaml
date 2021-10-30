@@ -2,7 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "issuer.fullname" . }}-init
+  name: {{ include "issuer.fullname" . }}-setup
   labels:
     {{- include "issuer.labels" . | nindent 4 }}
   annotations:
