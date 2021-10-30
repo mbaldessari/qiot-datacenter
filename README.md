@@ -14,6 +14,22 @@ Login to your SNO with oc CLI.
 oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 ```
 
+# cleanup
+
+```
+helm uninstall ocp-srv-install --namespace manufacturing-dev
+helm uninstall ocp-install --namespace manufacturing-dev
+helm uninstall ocp-olm-install --namespace manufacturing-dev
+helm uninstall ocp-vault-install --namespace hashicorp
+oc delete project manufacturing-dev
+oc delete project hashicorp
+
+
+
+```
+
+
+
 # OCP Vault chart
 
 ## Vault
@@ -40,7 +56,7 @@ helm install ocp-vault-install ./ocp-vault-install --dependency-update --create-
 2. AMQ Streams
 
 ```
-helm install ocp-pre-install ./ocp-pre-install --create-namespace --namespace manufacturing-dev
+helm install ocp-olm-install ./ocp-olm-install --create-namespace --namespace manufacturing-dev
 ```
 
 # OCP Install Chart
@@ -53,5 +69,32 @@ helm install ocp-pre-install ./ocp-pre-install --create-namespace --namespace ma
 
 ```
 export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
-helm install core ocp-install --dependency-update --set issuer.wildcardDomain=${WILDCARD} --namespace manufacturing-dev
+helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcardDomain=${WILDCARD} --namespace manufacturing-dev
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
