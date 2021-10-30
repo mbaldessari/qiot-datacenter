@@ -1,3 +1,4 @@
+{{- if .Values.vault.init -}}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -46,3 +47,4 @@ spec:
 
             # Secret must not part of the release
             oc create secret generic {{ include "vault-bootstrap.fullname" . }} --from-env-file=/tmp/vault.env
+{{- end }}

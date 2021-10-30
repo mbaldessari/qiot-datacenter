@@ -47,6 +47,3 @@ vault:
 # OpenShift Client
 vault-bootstrap:
   enabled: True
-  
-amqstreams:
-  startingCSV: amqstreams.v1.8.0

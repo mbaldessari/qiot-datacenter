@@ -10,9 +10,9 @@ dependencies:
     repository: https://helm.releases.hashicorp.com
     condition: vault.enabled
     tags:
-      - hashicorp
+      - hashicorp-vault
   - name: vault-bootstrap
     version: 0.1.0
     condition: vault-bootstrap.enabled
     tags:
-      - hashicorp
+      - vault-bootstrap

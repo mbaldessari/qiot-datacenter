@@ -13,6 +13,7 @@ serviceAccount:
   name: ""
   
 vault:
+  init: True
   schema: https
   port: 8200
   image:

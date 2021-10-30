@@ -1,3 +1,4 @@
+{{- if .Values.vault.init -}}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -10,7 +11,8 @@ metadata:
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
     "helm.sh/hook-weight": "1"
 spec:
-  backoffLimit: 0
+  # Retry if the vault is not yet unsealed
+  backoffLimit: 5
   ttlSecondsAfterFinished: 120
   template:
     metadata:
@@ -38,3 +40,4 @@ spec:
 
             vault auth enable --tls-skip-verify kubernetes
             vault write --tls-skip-verify auth/kubernetes/config token_reviewer_jwt=$JWT kubernetes_host=$KUBERNETES_HOST kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+{{- end }}

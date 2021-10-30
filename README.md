@@ -14,21 +14,18 @@ Login to your SNO with oc CLI.
 oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 ```
 
-# cleanup
+# Cleanup
 
 ```
 helm uninstall ocp-srv-install --namespace manufacturing-dev
 helm uninstall ocp-install --namespace manufacturing-dev
 helm uninstall ocp-olm-install --namespace manufacturing-dev
-helm uninstall ocp-vault-install --namespace hashicorp
+helm uninstall vault --namespace hashicorp
+oc delete pvc --all --namespace hashicorp
+oc delete secret vault-vault-bootstrap  --namespace hashicorp
 oc delete project manufacturing-dev
 oc delete project hashicorp
-
-
-
 ```
-
-
 
 # OCP Vault chart
 
@@ -39,7 +36,7 @@ oc delete project hashicorp
 
 ```
 export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
-helm install ocp-vault-install ./ocp-vault-install --dependency-update --create-namespace --set vault.server.route.host=vault.${WILDCARD} --namespace hashicorp
+helm install vault ./ocp-vault-install --dependency-update --create-namespace --set vault.server.route.host=vault.${WILDCARD} --namespace hashicorp
 ```
 >
 > VAULT_TOKEN and KEYS are on a secret in the hashicorp namespace.
@@ -52,7 +49,7 @@ helm install ocp-vault-install ./ocp-vault-install --dependency-update --create-
 
 ## OLM
 
-1. cert-manager
+1. Cert Manager
 2. AMQ Streams
 
 ```
