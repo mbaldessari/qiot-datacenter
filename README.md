@@ -71,9 +71,10 @@ helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcard
 
 # OCP Service Install Chart
 
-Event Collector service
-Plant Manager service
-product Line service
+1. Event Collector service
+2. Plant Manager service
+3. Product Line service
+4. Registration service
 
 ```
 helm install ocp-srv-install ./ocp-srv-install --namespace manufacturing-dev

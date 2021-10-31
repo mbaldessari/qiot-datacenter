@@ -38,6 +38,7 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
+      serviceAccountName: registration-service
       volumes:
       - configMap:
           defaultMode: 420
