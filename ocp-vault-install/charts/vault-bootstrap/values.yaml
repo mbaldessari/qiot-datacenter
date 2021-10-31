@@ -14,6 +14,8 @@ serviceAccount:
   
 vault:
   init: True
+  serviceAccount:
+    name: vault
   schema: https
   port: 8200
   image:

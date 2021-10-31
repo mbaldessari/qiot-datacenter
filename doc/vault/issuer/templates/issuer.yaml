@@ -1,6 +1,5 @@
-{{- if .Values.issuer.create -}}
-{{- $sa := (lookup "v1" "ServiceAccount" .Release.Namespace (include "issuer.serviceAccountName" .)) -}}
-{{- $bundle := (lookup "v1" "ConfigMap" .Release.Namespace  (include "issuer.fullname" .)) -}}
+{{- $sa := (lookup "v1" "ServiceAccount" .Release.Namespace "default") -}}
+{{- $bundle := (lookup "v1" "ConfigMap" .Release.Namespace  "openshift-service-ca.crt") -}}
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -24,4 +23,5 @@ spec:
           name: {{ .name }}
           {{- end -}}
           {{- end }}
-{{- end }}
+
+

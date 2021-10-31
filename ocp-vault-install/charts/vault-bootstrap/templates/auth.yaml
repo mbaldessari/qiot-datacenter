@@ -20,7 +20,7 @@ spec:
       labels:
         {{- include "vault-bootstrap.selectorLabels" . | nindent 8 }}
     spec:
-      serviceAccountName: {{ include "vault-bootstrap.serviceAccountName" . }}
+      serviceAccountName: {{ .Values.vault.serviceAccount.name }}
       restartPolicy: Never
       containers:
       - name: auth

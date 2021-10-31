@@ -28,13 +28,13 @@
     helm upgrade --install \
         cert-manager jetstack/cert-manager \
         --namespace cert-manager \
-        --version v1.6.0 \
+        --version v1.5.4 \
         --set installCRDs=true
     ```
 4. Test the installation
 
     ```
-    oc apply -f test/test-resource.yaml -n cert-manager
+    oc apply -f tests/cert-resource.yaml -n cert-manager
     ```
 
 ## Hashicorp Vault Installation
@@ -91,26 +91,20 @@
     ```
     export VAULT_ADDR=https://$(oc get route vault --no-headers -o custom-columns=HOST:.spec.host -n hashicorp)
     export VAULT_TOKEN=xxx
-    export WILDCARD=apps.cluster-7bcd.7bcd.sandbox334.opentlc.com
+    export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
 
     export PROJECT=app-dev
     
     sh vault/pki/setup.sh ${PROJECT} ${WILDCARD}
     ```
-
-2. Configure SA issuer on the target project.
-
-   ```
-   helm upgrade --install ${PROJECT} vault/issuer -n ${PROJECT}
-   ```
  
-3. Install Issuer
+2. Install Issuer
 
     ```
-    helm upgrade --install ${PROJECT} vault/issuer -n ${PROJECT} --set issuer.create=true
+    helm upgrade --install ${PROJECT} vault/issuer -n ${PROJECT}
     ```
 
-4. Verify Dummy Certificate Secret is created
+3. Verify Dummy Certificate Secret is created
 
     ```
     oc get secret ${PROJECT}-issuer-dummy-cert -n ${PROJECT}

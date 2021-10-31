@@ -4,10 +4,5 @@
 
 baseDomain: qiot-project.io
 
-serviceAccount:
-  create: true
-  annotations: {}
-
 issuer:
-  create: false
-  server: https://vault-internal.hashicorp.svc.cluster.local:8200
+  server: https://vault.hashicorp.svc.cluster.local:8200

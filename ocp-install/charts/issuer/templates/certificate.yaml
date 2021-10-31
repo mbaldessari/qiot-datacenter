@@ -1,4 +1,4 @@
-{{- if .Values.issuer.create -}}
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -12,4 +12,3 @@ spec:
   secretName: {{ include "issuer.fullname" . }}-dummy-cert
   issuerRef:
     name: {{ include "issuer.fullname" . }}-vault
-{{- end }}
