@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+  application.properties: |-
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9092
+    influxdb.connectionUrl=http://ocp-install-influxdb2
+    influxdb.token=qiotmanufacturinginfluxdbtoken
+    influxdb.org=qiot
+    influxdb.data.bucket=manufacturing
+    
+kind: ConfigMap
+metadata:
+  name: event-collector-service

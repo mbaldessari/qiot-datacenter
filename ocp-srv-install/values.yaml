@@ -1,4 +1,1 @@
 name: manufacturing-datacenter-srv-install
-facilitymanagerservice:
-  path: "/var/hpvolumes/facility_manager_service"
-  storageCapacity: 5Gi
