@@ -1,4 +1,5 @@
-{{- if .Values.vault.init -}}
+{{- if .Values.vault.auth -}}
+{{- $sa := (lookup "v1" "ServiceAccount" .Release.Namespace .Values.vault.serviceAccount.name) -}}
 ---
 apiVersion: batch/v1
 kind: Job
@@ -7,7 +8,7 @@ metadata:
   labels:
     {{- include "vault-bootstrap.labels" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": post-install
+    "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
     "helm.sh/hook-weight": "1"
 spec:
@@ -21,7 +22,16 @@ spec:
         {{- include "vault-bootstrap.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ .Values.vault.serviceAccount.name }}
+      serviceAccount: {{ .Values.vault.serviceAccount.name }}
       restartPolicy: Never
+      volumes:
+      - name: token
+        secret:
+        {{- range $sa.secrets }}
+        {{- if contains  "token" .name }}
+          secretName: {{ .name }}
+        {{- end -}}
+        {{- end }}
       containers:
       - name: auth
         image: {{ .Values.vault.image.repository }}:{{ .Values.vault.image.tag }}
@@ -35,9 +45,14 @@ spec:
         - /bin/sh
         - '-c'
         - |
-            JWT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+            vault auth disable --tls-skip-verify kubernetes
+
+            JWT=$(cat /var/run/secrets/kubernetes.io/serviceaccount/vault/token)
             KUBERNETES_HOST=https://${KUBERNETES_PORT_443_TCP_ADDR}:443
 
             vault auth enable --tls-skip-verify kubernetes
             vault write --tls-skip-verify auth/kubernetes/config token_reviewer_jwt=$JWT kubernetes_host=$KUBERNETES_HOST kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        volumeMounts:
+        - name: token
+          mountPath: /var/run/secrets/kubernetes.io/serviceaccount/vault/
 {{- end }}
