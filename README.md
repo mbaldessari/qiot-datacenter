@@ -19,8 +19,8 @@ oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 ```
 helm uninstall ocp-srv-install --namespace manufacturing-dev
 helm uninstall ocp-install --namespace manufacturing-dev
-helm uninstall ocp-olm-install --namespace manufacturing-dev
 oc delete pvc --all --namespace manufacturing-dev
+helm uninstall ocp-olm-install --namespace manufacturing-dev
 oc delete project manufacturing-dev
 
 helm uninstall vault --namespace hashicorp

@@ -4,7 +4,10 @@ metadata:
   name: plant-manager-service
 spec:
   port:
-    targetPort: 8080-tcp
+    targetPort: 9094
+  tls:
+    termination: passthrough
+  wildcardPolicy: None
   to:
     kind: Service
     name: plant-manager-service

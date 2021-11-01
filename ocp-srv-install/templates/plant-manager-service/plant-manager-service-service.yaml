@@ -9,6 +9,10 @@ spec:
     port: 8080
     protocol: TCP
     targetPort: 8080
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
   selector:
     app: plant-manager-service
     deploymentconfig: plant-manager-service
