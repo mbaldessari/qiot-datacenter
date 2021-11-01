@@ -4,10 +4,12 @@ name: manufacturing-datacenter-install
 mongo:
   path: "/var/hpvolumes/mongodb"
   storageCapacity: 5Gi
-  MONGODB_ADMIN_PASSWORD: qiotmanufacturingmongoadminpass
-  MONGODB_DATABASE: qiotmongo
-  MONGODB_PASSWORD: mongopass
-  MONGODB_USER: mongouser
+  MONGO_INITDB_ROOT_USERNAME: qiotroot
+  MONGO_INITDB_ROOT_PASSWORD: qiotrootpassword
+  MONGODB_ADMIN_PASSWORD: qiotrootpassword
+  MONGODB_DATABASE: qiot_manufacturing
+  MONGODB_PASSWORD: qiotmanufacturingpassword
+  MONGODB_USER: qiotmanufacturing
   
 ########## Influxdb2 ##########
 influxdb2:
