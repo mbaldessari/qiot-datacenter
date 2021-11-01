@@ -1,13 +1,10 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: plant-manager-service
+  name: plant-manager-service-insecure
 spec:
   port:
-    targetPort: tcp-external
-  tls:
-    termination: passthrough
-  wildcardPolicy: None
+    targetPort: tcp-internal
   to:
     kind: Service
     name: plant-manager-service

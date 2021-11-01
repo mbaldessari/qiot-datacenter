@@ -5,11 +5,11 @@ metadata:
 spec:
   ipFamilyPolicy: SingleStack
   ports:
-  - name: 8080-tcp
+  - name: tcp-internal
     port: 8080
     protocol: TCP
     targetPort: 8080
-  - name: 8443-tcp
+  - name: tcp-external
     port: 8443
     protocol: TCP
     targetPort: 8443
