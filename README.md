@@ -35,7 +35,7 @@ oc delete project hashicorp
 3. Vault Bootstrap (init and unsealed)
 
 ```
-export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
+export WILDCARD=apps.$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
 helm install vault ./ocp-vault-install --dependency-update --create-namespace --set vault.server.route.host=vault.${WILDCARD} --namespace hashicorp
 ```
 >
@@ -65,7 +65,7 @@ helm install ocp-olm-install ./ocp-olm-install --create-namespace --namespace ma
 5. Create Vault issuer
 
 ```
-export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
+export WILDCARD=apps.$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
 helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcardDomain=${WILDCARD} --namespace manufacturing-dev
 ```
 
