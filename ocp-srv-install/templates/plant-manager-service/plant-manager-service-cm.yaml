@@ -3,12 +3,12 @@ data:
   application.properties: |-
     quarkus.ssl.native=true
     quarkus.http.ssl-port=8443
-    quarkus.http.ssl.certificate.file=/cert/tls.crt
-    quarkus.http.ssl.certificate.key-file=/cert/tls.key
-    #quarkus.http.ssl.certificate.key-store-file=/cert/keystore.p12
+    #quarkus.http.ssl.certificate.file=/cert/tls.crt
+    #quarkus.http.ssl.certificate.key-file=/cert/tls.key
+    quarkus.http.ssl.certificate.key-store-file=/cert/keystore.p12
     #quarkus.http.ssl.certificate.key-store-file-type=P12
-    #quarkus.http.ssl.certificate.key-store-password=cGFzc3dvcmQ=
-    quarkus.http.insecure-requests=enabled
+    quarkus.http.ssl.certificate.key-store-password=password
+    quarkus.http.insecure-requests=disabled
     registration-service-api/mp-rest/url=http://registration-service:8080
     quarkus.datasource.jdbc.url=jdbc:postgresql://postgresql:5432/qiot_manufacturing
 kind: ConfigMap
