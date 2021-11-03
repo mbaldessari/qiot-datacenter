@@ -91,7 +91,7 @@
     ```
     export VAULT_ADDR=https://$(oc get route vault --no-headers -o custom-columns=HOST:.spec.host -n hashicorp)
     export VAULT_TOKEN=xxx
-    export WILDCARD=apps.cluster-4ktth.4ktth.sandbox1357.opentlc.com
+    export WILDCARD=apps.$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
 
     export PROJECT=app-dev
     
