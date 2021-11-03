@@ -16,6 +16,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/plant-manager-service/plant-manager-service-cm.yaml") . | sha256sum }}
       labels:
         app: plant-manager-service
         deploymentconfig: plant-manager-service
