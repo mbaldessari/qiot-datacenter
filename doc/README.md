@@ -109,3 +109,43 @@
     ```
     oc get secret ${PROJECT}-issuer-dummy-cert -n ${PROJECT}
     ```
+
+## Intermedia CA
+
+1. Service Account Vault Role binding
+
+```
+vault policy write -tls-skip-verify registration-manufacturing-dev-admin ./policy/registration-admin.hcl
+
+vault write -tls-skip-verify auth/kubernetes/role/manufacturing-dev-reg-policy bound_service_account_names=registration-service bound_service_account_namespaces=manufacturing-dev policies=registration-manufacturing-dev-admin ttl=1h
+```
+
+2. Login to Vault with registration-service SA.
+
+```
+JWT=$(oc sa get-token registration-service -n manufacturing-dev)
+
+vault write --tls-skip-verify auth/kubernetes/login role=registration-admin jwt=${JWT}
+
+vault write --tls-skip-verify auth/kubernetes/login role=manufacturing-dev-reg-policy jwt=${JWT}
+
+export VAULT_TOKEN=xxx 
+```
+
+3. Enable the Intermediate CA
+
+```
+vault secrets enable -path=manufacturing-dev-pki-factory01 -tls-skip-verify pki
+
+vault secrets tune -max-lease-ttl=43800h -tls-skip-verify manufacturing-dev-pki-factory01
+````
+
+4. Sign it with the rootCA
+
+```
+vault write -format=json -tls-skip-verify manufacturing-dev-pki-factory01/intermediate/generate/exported common_name="factory01.manufacturing-dev.qiot-project.io Intermediate Authority" | jq -r '.data.csr' > pki_intermediate.csr
+
+vault write -format=json -tls-skip-verify manufacturing-dev-pki/root/sign-intermediate csr=@pki_intermediate.csr format=pem_bundle ttl="43800h" | jq -r '.data.certificate' > intermediate.cert.pem
+
+vault write -tls-skip-verify manufacturing-dev-pki-factory01/intermediate/set-signed certificate=@intermediate.cert.pem
+```
