@@ -16,7 +16,7 @@ echo "Setup on ${PROJECT}"
 
 echo "Enable PKI Engine ${PKI}"
 
-vault secrets enable -tls-skip-verify --path=${PKI} pki
+vault secrets enable -tls-skip-verify -path=${PKI} -description="$PROJECT - Root CA" pki
 # 1 Year
 vault secrets tune -tls-skip-verify -max-lease-ttl=8760h ${PKI}
 

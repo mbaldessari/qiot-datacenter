@@ -21,7 +21,7 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: init
+      - name: cleanup
         envFrom:
         - secretRef:
             name: {{ .Values.issuer.vault.secret }}

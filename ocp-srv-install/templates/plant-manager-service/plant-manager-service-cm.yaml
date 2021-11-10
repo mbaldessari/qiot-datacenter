@@ -8,7 +8,7 @@ data:
     quarkus.http.ssl.certificate.key-store-file=/cert/keystore.p12
     #quarkus.http.ssl.certificate.key-store-file-type=P12
     quarkus.http.ssl.certificate.key-store-password=password
-    quarkus.http.insecure-requests=disabled
+    quarkus.http.insecure-requests=enabled
     registration-service-api/mp-rest/url=http://registration-service:8080
     quarkus.datasource.jdbc.url=jdbc:postgresql://postgresql:5432/qiot_manufacturing
 kind: ConfigMap
