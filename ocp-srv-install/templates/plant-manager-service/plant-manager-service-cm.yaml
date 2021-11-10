@@ -1,12 +1,10 @@
 apiVersion: v1
 data:
   application.properties: |-
+    quarkus.log.level=INFO
     quarkus.ssl.native=true
     quarkus.http.ssl-port=8443
-    #quarkus.http.ssl.certificate.file=/cert/tls.crt
-    #quarkus.http.ssl.certificate.key-file=/cert/tls.key
     quarkus.http.ssl.certificate.key-store-file=/cert/keystore.p12
-    #quarkus.http.ssl.certificate.key-store-file-type=P12
     quarkus.http.ssl.certificate.key-store-password=password
     quarkus.http.insecure-requests=enabled
     registration-service-api/mp-rest/url=http://registration-service:8080
