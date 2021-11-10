@@ -38,7 +38,7 @@ spec:
               echo "Missing Projects"
           fi
 
-          export BASE_DOMAIN=${3:-qiot-project.io}
+          export BASE_DOMAIN={{ .Values.baseDomain }}
           export PROJECT={{ .Release.Namespace }}
           export PKI=${PROJECT}-pki
           export DOMAIN=${PROJECT}.$BASE_DOMAIN
