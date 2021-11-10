@@ -75,7 +75,7 @@
     KUBERNETES_HOST=https://${KUBERNETES_PORT_443_TCP_ADDR}:443
 
     vault auth enable --tls-skip-verify kubernetes
-    vault write --tls-skip-verify auth/kubernetes/config token_reviewer_jwt=$JWT kubernetes_host=$KUBERNETES_HOST kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    vault write --tls-skip-verify auth/kubernetes/config issuer=https://kubernetes.default.svc token_reviewer_jwt=$JWT kubernetes_host=$KUBERNETES_HOST kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
     ```
 
 ## Cert Manager and Vault PKI Integration
