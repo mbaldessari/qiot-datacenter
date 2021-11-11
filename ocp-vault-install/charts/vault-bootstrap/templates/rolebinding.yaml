@@ -5,9 +5,6 @@ metadata:
   name: {{ include "vault-bootstrap.serviceAccountName" . }}
   labels:
     {{- include "vault-bootstrap.labels" . | nindent 4 }}
-  annotations:
-    "helm.sh/hook": pre-install,post-install
-    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
