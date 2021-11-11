@@ -10,6 +10,7 @@ spec:
   concurrencyPolicy: Forbid
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
+  startingDeadlineSeconds: 200
   jobTemplate:
     spec:
       backoffLimit: 0
