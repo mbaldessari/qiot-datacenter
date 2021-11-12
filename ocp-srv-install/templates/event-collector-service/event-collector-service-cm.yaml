@@ -5,7 +5,10 @@ data:
     influxdb.token=qiotmanufacturinginfluxdbtoken
     influxdb.org=qiot
     influxdb.data.bucket=manufacturing
-    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9092
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9095
+    kafka.security.protocol=SASL_PLAINTEXT
+    kafka.sasl.jaas.config={{ .Values.eventcollectorservice.sasl }}
+    kafka.sasl.mechanism=SCRAM-SHA-512
 kind: ConfigMap
 metadata:
   name: event-collector-service

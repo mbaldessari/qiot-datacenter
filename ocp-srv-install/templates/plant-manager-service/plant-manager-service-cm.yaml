@@ -9,7 +9,11 @@ data:
     quarkus.http.insecure-requests=enabled
     registration-service-api/mp-rest/url=http://registration-service:8080
     quarkus.datasource.jdbc.url=jdbc:postgresql://postgresql:5432/qiot_manufacturing
-    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9092
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9095
+    kafka.ssl.truststore.password=password
+    kafka.security.protocol=SASL_PLAINTEXT
+    kafka.sasl.jaas.config={{ .Values.plantmanagerservice.sasl }}
+    kafka.sasl.mechanism=SCRAM-SHA-512
 kind: ConfigMap
 metadata:
   name: plant-manager-service
