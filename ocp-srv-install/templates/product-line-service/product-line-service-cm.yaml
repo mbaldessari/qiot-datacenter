@@ -1,12 +1,11 @@
 apiVersion: v1
 data:
   application.properties: |-
-    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9092
     quarkus.mongodb.connection-string=mongodb://mongodb:27017
     quarkus.mongodb.database=qiot_manufacturing
     quarkus.mongodb.credentials.username=qiotmanufacturing
     quarkus.mongodb.credentials.password=qiotmanufacturingpassword
-    
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9092
 kind: ConfigMap
 metadata:
   name: product-line-service
