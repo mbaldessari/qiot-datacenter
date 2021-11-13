@@ -1,6 +1,7 @@
 apiVersion: v1
 data:
   application.properties: |-
+    quarkus.log.category."io.qiot.manufacturing".level=DEBUG
     influxdb.connectionUrl=http://ocp-install-influxdb2
     influxdb.token=qiotmanufacturinginfluxdbtoken
     influxdb.org=qiot

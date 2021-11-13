@@ -22,4 +22,11 @@ spec:
           name: productline
           type: topic
         type: allow
+      - host: '*'
+        operation: Read
+        resource:
+          name: product-line
+          patternType: prefix
+          type: group
+        type: allow
     type: simple

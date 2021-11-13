@@ -23,4 +23,11 @@ spec:
           patternType: prefix
           type: topic
         type: allow
+      - host: '*'
+        operation: Read
+        resource:
+          name: event-collector
+          patternType: prefix
+          type: group
+        type: allow
     type: simple

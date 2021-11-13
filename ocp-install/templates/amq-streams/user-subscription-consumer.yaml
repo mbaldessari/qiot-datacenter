@@ -23,4 +23,11 @@ spec:
           patternType: literal
           type: topic
         type: allow
+      - host: '*'
+        operation: Read
+        resource:
+          name: plant-manager
+          patternType: literal
+          type: group
+        type: allow
     type: simple
