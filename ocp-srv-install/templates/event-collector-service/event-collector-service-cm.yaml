@@ -10,6 +10,13 @@ data:
     kafka.security.protocol=SASL_PLAINTEXT
     kafka.sasl.jaas.config={{ .Values.eventcollectorservice.sasl }}
     kafka.sasl.mechanism=SCRAM-SHA-512
+    mp.messaging.incoming.telemetryproduction.connector=smallrye-kafka
+    mp.messaging.incoming.telemetryproduction.auto-generated-client-id=true
+    mp.messaging.incoming.telemetryproduction.topic=telemetryproduction
+    mp.messaging.incoming.telemetryproduction.auto.offset.reset=latest
+    mp.messaging.incoming.telemetryproduction.group.id=event-collector-production
+    mp.messaging.incoming.telemetryproduction.failure-strategy=ignore
+    mp.messaging.incoming.telemetryproduction.value.deserializer=io.qiot.manufacturing.datacenter.eventcollector.service.util.deserializer.ProductionTelemetryDeserializer
 kind: ConfigMap
 metadata:
   name: event-collector-service

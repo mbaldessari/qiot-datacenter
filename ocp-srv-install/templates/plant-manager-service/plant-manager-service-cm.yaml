@@ -16,10 +16,10 @@ data:
     kafka.sasl.jaas.config={{ .Values.plantmanagerservice.sasl }}
     kafka.sasl.mechanism=SCRAM-SHA-512
     mp.messaging.incoming.machinerysubscription.connector=smallrye-kafka
+    mp.messaging.incoming.machinerysubscription.topic=machinerysubscription
     mp.messaging.incoming.machinerysubscription.auto-generated-client-id=true
     mp.messaging.incoming.machinerysubscription.auto.offset.reset=latest
     mp.messaging.incoming.machinerysubscription.group.id=plant-manager
-    mp.messaging.incoming.machinerysubscription.topic=machinerysubscription
     mp.messaging.incoming.machinerysubscription.failure-strategy=ignore
     mp.messaging.incoming.machinerysubscription.value.deserializer=io.qiot.manufacturing.datacenter.commons.util.serializer.MachinerySubscriptionRequestDeserializer
 kind: ConfigMap
