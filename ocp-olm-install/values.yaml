@@ -1,8 +1,8 @@
 
 ########## AMQ Streams ##########  
 amqstreams:
-  startingCSV: amqstreams.v1.8.0
+  startingCSV: amqstreams.v2.1.0-6
 
 ########## Cert Manager ##########
 certmanager:
-  startingCSV: cert-manager.v1.6.0
+  startingCSV: cert-manager.v1.8.0

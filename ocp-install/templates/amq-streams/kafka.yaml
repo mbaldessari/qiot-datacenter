@@ -10,8 +10,6 @@ spec:
     authorization:
       type: simple
     config:
-      inter.broker.protocol.version: '2.8'
-      log.message.format.version: '2.8'
       offsets.topic.replication.factor: 3
       transaction.state.log.min.isr: 2
       transaction.state.log.replication.factor: 3
@@ -35,7 +33,6 @@ spec:
       type: persistent-claim
       size: 100Gi
       deleteClaim: false
-    version: 2.8.0
   zookeeper:
     replicas: 3
     storage:

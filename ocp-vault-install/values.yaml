@@ -17,7 +17,7 @@ vault:
 
     route:
       enabled: true
-      host: vault.apps.cluster-7bcd.7bcd.sandbox334.opentlc.com
+      host: null
 
     standalone:
       enabled: true
