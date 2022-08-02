@@ -17,7 +17,7 @@ vault:
 
     route:
       enabled: true
-      host: null
+      host: vault.apps.qiot-datacenter-3.blueprints.rhecoeng.com
 
     standalone:
       enabled: true
