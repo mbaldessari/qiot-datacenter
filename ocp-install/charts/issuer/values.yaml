@@ -9,7 +9,7 @@ issuer:
   vault:
     namespace: hashicorp
     secret: vault-vault-bootstrap
-    server: https://vault.hashicorp.svc.cluster.local:8200
+    server: vault.hashicorp.svc.cluster.local:8200
     image:
       repository: "hashicorp/vault"
-      tag: "1.8.4"
+      tag: "1.11.2"
