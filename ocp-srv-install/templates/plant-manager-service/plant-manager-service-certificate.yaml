@@ -14,11 +14,11 @@ kind: Certificate
 metadata:
   name: bootstrap
 spec:
-  commonName: plant-manager-service.manufacturing-dev.qiot-project.io
+  commonName: plant-manager-service-manufacturing-dev.qiot-project.io
   dnsNames:
-  - plant-manager-service.manufacturing-dev.qiot-project.io
-  - plant-manager-service-manufacturing-dev.apps.qiot-datacenter-2.blueprints.rhecoeng.com
-  - plant-manager-service.manufacturing-dev.svc
+  - plant-manager-service-manufacturing-dev.qiot-project.io
+  #- plant-manager-service-manufacturing-dev.apps.qiot-datacenter-3.blueprints.rhecoeng.com
+  #- plant-manager-service-manufacturing-dev.svc
   issuerRef:
     name: ocp-install-issuer-vault
   keystores:
