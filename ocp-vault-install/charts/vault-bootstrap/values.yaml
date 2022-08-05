@@ -3,7 +3,7 @@ oc:
   image:
     repository: quay.io/openshift/origin-cli
     pullPolicy: IfNotPresent
-    tag: 4.12.0
+    tag: 4.8
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -21,4 +21,4 @@ vault:
   port: 8200
   image:
     repository: "hashicorp/vault"
-    tag: "1.10.3"
+    tag: "1.8.4"

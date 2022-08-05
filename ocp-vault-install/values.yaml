@@ -1,4 +1,3 @@
-
 # Hashicorp Vault Helm Chart
 global:
   tlsDisable: false
@@ -13,11 +12,11 @@ vault:
   server:
     extraEnvironmentVars:
       VAULT_CAPATH: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
-      VAULT_ADDR: vault-internal.hashicorp.svc.cluster.local:8200
+      VAULT_ADDR: https://vault-internal.hashicorp.svc.cluster.local:8200
 
     route:
       enabled: true
-      host: vault.apps.qiot-datacenter-3.blueprints.rhecoeng.com
+      host: vault.apps.devsecops-1.blueprints.rhecoeng.com
 
     standalone:
       enabled: true
