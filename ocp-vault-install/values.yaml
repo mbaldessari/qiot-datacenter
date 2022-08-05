@@ -1,3 +1,4 @@
+
 # Hashicorp Vault Helm Chart
 global:
   tlsDisable: false
@@ -16,7 +17,7 @@ vault:
 
     route:
       enabled: true
-      host: vault.apps.devsecops-1.blueprints.rhecoeng.com
+      host: vault.apps.cluster-7bcd.7bcd.sandbox334.opentlc.com
 
     standalone:
       enabled: true
