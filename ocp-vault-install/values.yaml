@@ -13,11 +13,11 @@ vault:
   server:
     extraEnvironmentVars:
       VAULT_CAPATH: /var/run/secrets/kubernetes.io/serviceaccount/service-ca.crt
-      VAULT_ADDR: https://vault-internal.hashicorp.svc.cluster.local:8200
+      VAULT_ADDR: https://vault.hashicorp.svc.cluster.local:8200
 
     route:
       enabled: true
-      host: vault.apps.cluster-7bcd.7bcd.sandbox334.opentlc.com
+      host: vault.apps.zero-trust-3.blueprints.rhecoeng.com
 
     standalone:
       enabled: true
