@@ -2,7 +2,7 @@ main:
   clusterGroupName: qiot-datacenter
 
 global:
-  pattern: qiot-manufacturing-datacenter
+  pattern: qiot-datacenter
 
   options:
     useCSV: False
