@@ -1,9 +1,0 @@
-dependencies:
-- name: vault
-  repository: https://helm.releases.hashicorp.com
-  version: 0.20.1
-- name: vault-bootstrap
-  repository: ""
-  version: 0.1.0
-digest: sha256:e23f8ddf03caf3e2d204e9275488e28e05926f64daedb599ceba4e1158bfa13b
-generated: "2022-08-08T11:11:20.408463355-06:00"
