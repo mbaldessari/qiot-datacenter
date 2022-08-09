@@ -50,7 +50,7 @@ clusterGroup:
       name: ocp-install
       namespace: manufacturing-dev
       project: qiot-datacenter
-      path: charts/datacenter/ocp-install
+      path: charts/qiot-datacenter/ocp-install
 
     vault:
       name: vault

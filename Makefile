@@ -3,7 +3,7 @@ PATTERN=ansible-edge-gitops
 TARGET_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 HUBCLUSTER_APPS_DOMAIN=$(shell oc get ingresses.config/cluster -o jsonpath={.spec.domain})
 TARGET_REPO=$(shell git remote show origin | grep Push | sed -e 's/.*URL:[[:space:]]*//' -e 's%^git@%%' -e 's%^https://%%' -e 's%:%/%' -e 's%^%https://%')
-CHART_OPTS=-f values-secret.yaml.template -f values-global.yaml -f values-hub.yaml --set global.targetRevision=main --set global.valuesDirectoryURL="https://github.com/claudiol/qiot-manufacturing-datacenter/raw/claudiol-vp-framework/" --set global.pattern="$(NAME)" --set global.namespace="$(NAME)" --set global.hubClusterDomain=example.com --set global.localClusterDomain=local.example.com
+CHART_OPTS=-f values-secret.yaml.template -f values-global.yaml -f values-hub.yaml --set global.targetRevision=main --set global.valuesDirectoryURL="https://github.com/claudiol/qiot-manufacturing-datacenter-installer/raw/claudiol-vp-framework/" --set global.pattern="$(NAME)" --set global.namespace="$(NAME)" --set global.hubClusterDomain=example.com --set global.localClusterDomain=local.example.com
 HELM_OPTS=-f values-global.yaml -f values-hub.yaml --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) --set global.hubClusterDomain=$(HUBCLUSTER_APPS_DOMAIN) --set global.localClusterDomain=$(HUBCLUSTER_APPS_DOMAIN)
 
 .PHONY: default
@@ -17,7 +17,7 @@ help:
 %:
 	make -f common/Makefile $*
 
-install upgrade deploy: operator-deploy post-install ## Install or upgrade the pattern via the operator
+install upgrade deploy: operator-deploy #post-install ## Install or upgrade the pattern via the operator
 	echo "Installed/Upgraded"
 
 legacy-install legacy-upgrade: legacy-deploy post-install ## Install or upgrade the pattern the "old" way
