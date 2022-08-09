@@ -1,0 +1,115 @@
+clusterGroup:
+  name: qiot-datacenter
+  isHubCluster: true
+
+  proposedOptions:
+    manageGitops: True
+    isHubCluster: True
+
+  # The framework will create the namespace and the operator group
+  namespaces:
+  - manufacturing-dev
+  - hashicorp
+
+  # Use only if you want to exclude an operator group from being created in
+  # a specified namespace
+  operatorgroupExcludes:
+
+  subscriptions:
+ # TODO: Allow namespace to be a list
+    amqstreams-dev:
+      name: amq-streams
+      namespace: manufacturing-dev
+      channel: stable
+      csv: amqstreams.v2.1.0-6
+
+    cert-manager-dev:
+      name: cert-manager
+      namespace: manufacturing-dev
+      channel: stable
+      source: community-operators
+      csv: cert-manager.v1.9.1
+
+  projects:
+  - qiot-datacenter
+  - hashicorp-vault
+
+  applications:
+    # acm:
+    #   name: acm
+    #   namespace: open-cluster-management
+    #   project: datacenter
+    #   path: common/acm
+    #   ignoreDifferences:
+    #   - group: internal.open-cluster-management.io
+    #     kind: ManagedClusterInfo
+    #     jsonPointers:
+    #     - /spec/loggingCA
+
+    ocp-install:
+      name: ocp-install
+      namespace: manufacturing-dev
+      project: qiot-datacenter
+      path: charts/datacenter/ocp-install
+
+    vault:
+      name: vault
+      namespace: hashicorp
+      project: qiot-datacenter
+      chart: hashicorp-vault
+      repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts
+      targetRevision: v0.0.1
+      overrides:
+      - name: global.openshift
+        value: "true"
+
+
+#  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
+#
+#  - name: pipelines
+#    namespace: production
+#    project: datacenter
+#    path: applications/pipeline
+#    repoURL: https://github.com/you/applications.git
+#    targetRevision: stable
+#    overrides:
+#    - name: myparam
+#      value: myparam
+#
+#  - name: pipelines
+#    namespace: staging
+#    project: datacenter
+#    path: applications/pipeline
+#    repoURL: https://github.com/you/applications.git
+#    targetRevision: main
+#
+#   Additional applications
+#   Be sure to include additional resources your apps will require
+#   +X machines
+#   +Y RAM
+#   +Z CPU
+#  - name: vendor-app
+#    namespace: default
+#    project: vendor
+#    path: path/to/myapp
+#    repoURL: https://github.com/vendor/applications.git
+#    targetRevision: main
+
+#   managedClusterGroups:
+#     factory:
+#       name: factory
+#       # repoURL: https://github.com/dagger-refuse-cool/manuela-factory.git
+#       # targetRevision: main
+#       helmOverrides:
+#       # Values must be strings!
+#       - name: clusterGroup.isHubCluster
+#         value: "false"
+#       clusterSelector:
+# #        matchLabels:
+# #          clusterGroup: factory
+#         matchExpressions:
+#         - key: vendor
+#           operator: In
+#           values:
+#             - OpenShift
+
