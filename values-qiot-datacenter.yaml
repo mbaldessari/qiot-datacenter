@@ -61,6 +61,8 @@ clusterGroup:
       overrides:
       - name: global.openshift
         value: "true"
+      - name: vault.init
+        value: "true"
 
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
