@@ -67,7 +67,7 @@ clusterGroup:
       - name: vault.server.route.enable
         value: true
       - name: vault.server.route.host
-        value: vault.{{ .Values.global.localClusterDomain }}
+        value: null
 
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
