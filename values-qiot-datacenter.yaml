@@ -31,7 +31,6 @@ clusterGroup:
 
   projects:
   - qiot-datacenter
-  - hashicorp-vault
 
   applications:
     # acm:
@@ -55,7 +54,7 @@ clusterGroup:
       name: vault
       namespace: hashicorp
       project: qiot-datacenter
-      chart: Hashicorp-Vault
+      chart: vault
       repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts/
       targetRevision: 0.0.1
       overrides:
