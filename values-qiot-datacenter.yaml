@@ -59,9 +59,9 @@ clusterGroup:
       targetRevision: 0.0.1
       overrides:
       - name: global.openshift
-        value: "true"
+        value: true
       - name: vault.init
-        value: "true"
+        value: true
       - name: vault.enabled
         value: true
       - name: vault.server.route.enable
