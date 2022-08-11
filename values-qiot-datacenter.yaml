@@ -70,11 +70,6 @@ clusterGroup:
         value: null
       - name: vault.server.extraEnvironmentVars.VAULT_ADDR
         value: https://vault.hashicorp.svc.cluster.local:8200
-      - name: vault.server.image.repository
-        value: "registry.connect.redhat.com/hashicorp/vault"
-      - name: vault.server.image.tag
-        value: "1.11.2-ubi"
-
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
 #
