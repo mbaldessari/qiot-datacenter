@@ -50,6 +50,12 @@ clusterGroup:
       project: qiot-datacenter
       path: charts/qiot-datacenter/ocp-install
 
+    cert-issuer:
+      name: cert-issuer
+      namespace: manufacturing-dev
+      project: qiot-datacenter
+      path: charts/qiot-datacenter/issuer
+
     vault:
       name: vault
       namespace: hashicorp
