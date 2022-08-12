@@ -50,8 +50,8 @@ clusterGroup:
       project: qiot-datacenter
       path: charts/qiot-datacenter/ocp-install
 
-    cert-issuer:
-      name: cert-issuer
+    vault-issuer:
+      name: vault-issuer
       namespace: manufacturing-dev
       project: qiot-datacenter
       path: charts/qiot-datacenter/issuer
