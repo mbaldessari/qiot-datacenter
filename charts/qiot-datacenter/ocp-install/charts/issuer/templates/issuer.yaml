@@ -11,7 +11,9 @@ spec:
   vault:
     path: {{ .Release.Namespace }}-pki/sign/{{ .Values.baseDomain }} 
     server: {{ .Values.issuer.vault.server }}
+    {{- if $bundle }}
     caBundle: {{ get $bundle.data "service-ca.crt" | b64enc }}
+    {{- end }}
     auth:
       kubernetes:
         role: {{ .Release.Namespace }}-{{ .Values.baseDomain }}
