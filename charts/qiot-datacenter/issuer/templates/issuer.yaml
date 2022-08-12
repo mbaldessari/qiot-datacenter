@@ -1,5 +1,5 @@
-{{- $sa := (lookup "v1" "ServiceAccount" "hashicorp" "default" ) -}}
-{{- $bundle := (lookup "v1" "ConfigMap" "hashicorp"  "openshift-service-ca.crt" ) -}}
+{{- $sa := (lookup "v1" "ServiceAccount" "manufacturing-dev" "default" ) -}}
+{{- $bundle := (lookup "v1" "ConfigMap" "manufacturing-dev"  "openshift-service-ca.crt" ) -}}
 ---
 apiVersion: cert-manager.io/v1
 kind: Issuer
@@ -11,9 +11,7 @@ spec:
   vault:
     path: {{ .Release.Namespace }}-pki/sign/{{ .Values.baseDomain }} 
     server: {{ .Values.issuer.vault.server }}
-    {{- if $bundle }}
-    caBundle: {{ get $bundle.data "service-ca.crt" | b64enc }}
-    {{- end }}
+    caBundle: {{ get $bundle "service-ca.crt" | b64enc }}
     auth:
       kubernetes:
         role: {{ .Release.Namespace }}-{{ .Values.baseDomain }}
