@@ -17,7 +17,7 @@ spec:
           #!/usr/bin/env bash
 
           CONFIGMAP=$(oc get configmap -n {{ .Release.Namespace }} | grep "openshift-service-ca.crt" | awk '{print $1}')
-          TOKEN_NAME=$(oc get sa default -o json | grep token | awk '{print $2}')
+          TOKEN_NAME=$(oc get sa default -o json | grep token | awk '{print $2}' | tr -d '"')
           CERT=$(oc extract configmap/openshift-service-ca.crt --keys=service-ca.crt --to=- | base64 -w 0 )
           cat <<EOF | oc create -f -
            apiVersion: cert-manager.io/v1
@@ -35,7 +35,7 @@ spec:
                    mountPath: /v1/auth/kubernetes
                    secretRef: 
                      key: token
-                     name: ${TOKEN_NAME}
+                     name: '${TOKEN_NAME}'
           EOF
         name: create-cert-issuer
       dnsPolicy: ClusterFirst
