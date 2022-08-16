@@ -16,6 +16,12 @@ spec:
         - |
           #!/usr/bin/env bash
 
+          ISSUER=$(oc get issuer {{ include "issuer.fullname" . }}-vault | tail -1 | awk '{print $1}')
+
+          if [ -z ${ISSUER} ]; then
+            oc delete issuer ${ISSUER}
+          fi
+
           CONFIGMAP=$(oc get configmap -n {{ .Release.Namespace }} | grep "openshift-service-ca.crt" | awk '{print $1}')
           TOKEN_NAME=$(oc get sa default -o json | grep token | awk '{print $2}' | tr -d '"')
           CERT=$(oc extract configmap/openshift-service-ca.crt --keys=service-ca.crt --to=- | base64 -w 0 )
