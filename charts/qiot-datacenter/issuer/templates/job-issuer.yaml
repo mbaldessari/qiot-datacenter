@@ -18,7 +18,7 @@ spec:
 
           ISSUER=$(oc get issuer {{ include "issuer.fullname" . }}-vault | tail -1 | awk '{print $1}')
 
-          if [ -z ${ISSUER} ]; then
+          if [ ! -z ${ISSUER} ]; then
             oc delete issuer ${ISSUER}
           fi
 
