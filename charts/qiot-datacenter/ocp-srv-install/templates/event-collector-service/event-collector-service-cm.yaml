@@ -6,7 +6,7 @@ data:
     influxdb.token=qiotmanufacturinginfluxdbtoken
     influxdb.org=qiot
     influxdb.data.bucket=manufacturing
-    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9093
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9091
     kafka.security.protocol=SASL_PLAINTEXT
     kafka.sasl.jaas.config={{ .Values.eventcollectorservice.sasl }}
     kafka.sasl.mechanism=SCRAM-SHA-512
