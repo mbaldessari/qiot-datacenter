@@ -18,7 +18,7 @@ spec:
   dnsNames:
   - plant-manager-service.manufacturing-dev.qiot-project.io
   issuerRef:
-    name: ocp-install-issuer-vault
+    name: vault-issuer-vault
   keystores:
     pkcs12:
       create: true
