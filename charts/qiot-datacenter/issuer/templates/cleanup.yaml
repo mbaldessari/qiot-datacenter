@@ -45,7 +45,7 @@ spec:
           export ROLE=${PROJECT}-$BASE_DOMAIN
           # In future create a dedicate SA during project provision
           export SERVICE_ACCOUNT=default
-          export WILDCARD_DOMAIN={{ .Values.wildcardDomain }}
+          export WILDCARD_DOMAIN={{ .Values.global.localClusterDomain }}
 
           echo "Cleanup on ${PROJECT}"
 
