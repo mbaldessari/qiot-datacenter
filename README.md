@@ -1,81 +1,80 @@
-# qiot-manufacturing-datacenter-installer
+# Hybrid Cloud Community Pattern qiot-manufacturing-datacenter-installer
 
-steps to install components in Openshift container platform:
+This repository is based on the qiot-manufacturing-datacenter-installer that can be found in
+the https://github.com/qiot-project/qiot-manufacturing-datacenter-installer that has been
+converted to use the Validated Patterns framwork.
+
+The components in this community pattern are now installed using the openshift-gitops ArgoCD implementation.
+The state of the pattern is now strictly found in the manifests in *git*.  The validated patterns framework
+has been committed to GitOps as a philosophy and operational practice since the beginning.
+The framework’s use of ArgoCD as a mechanism for deploying applications and components is proof of our
+commitment to GitOps core principles of having a declared desired end state, and a designated agent to
+bring about that end state.
 
 ## Prerequisites
 
-Download the Openshift client from the [official download page](https://access.redhat.com/downloads/content/290/ver=4.8/rhel---8/4.8.13/x86_64/product-software)
+- A deployed OpenShift cluster via IPI or UPI
+    - The IPI installer will create all the proper components needed to run an OpenShift cluster.
 
-Download helm CLI: https://helm.sh/docs/intro/install/
+- When using UPI the cluster will need access to the following services:
+    - DNS
+    - Storage 
+    - Configure DHCP.
+    - Provision required load balancers.
+    - Configure the ports for your machines.
+    - Ensure network connectivity.
 
-Login to your SNO with oc CLI.
+
+## How to deploy
+
+There are two ways of deploying this community pattern.
+
+1. From the command line by executing **make install**
+2. Installing the Validated Patterns community operator and creating a pattern instance.
+
+### Command Line deployment
+
+You will need to install the **make** utility in order to start the deployment from the command line.
+
+Fedora:
+```
+sudo dnf install make
+```
+
+Red Hat Linux:
+```
+sudo yum install make
+```
+
+You will also need to set the **KUBECONFIG** environment variable or login using the **oc login** command.
+
+```
+export KUBECONFIG=<cluster-config-dir>/auth/kubeconfig
+```
 
 ```
 oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 ```
 
-# Cleanup
 
-```
-helm uninstall ocp-srv-install --namespace manufacturing-dev
-helm uninstall ocp-install --namespace manufacturing-dev
-oc delete pvc --all --namespace manufacturing-dev
-helm uninstall ocp-olm-install --namespace manufacturing-dev
-oc delete project manufacturing-dev
+## Cleanup
 
-helm uninstall vault --namespace hashicorp
-oc delete pvc --all --namespace hashicorp
-oc delete secret vault-vault-bootstrap  --namespace hashicorp
-oc delete project hashicorp
-```
-
-# OCP Vault chart
-
-1. Chart Installation Vault
-3. Vault Bootstrap (init and unsealed)
-
-```
-export WILDCARD=apps.$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
-helm install vault ./ocp-vault-install --dependency-update --create-namespace --set vault.server.route.host=vault.${WILDCARD} --namespace hashicorp
-```
->
-> VAULT_TOKEN and KEYS are on a secret in the hashicorp namespace.
->
-
->
-> A CronJob checks the sealed status, in case the status is sealed will automatically unseal it.
->
+There are a few ways to do the cleanup.  This will be detailed at a later time.
 
 
-# OLM
+## Components that will get installed
 
+### OLM
+
+1. HashiCorp Vault
 1. Cert Manager
-2. AMQ Streams
-
-```
-helm install ocp-olm-install ./ocp-olm-install --create-namespace --namespace manufacturing-dev
-```
-
-# OCP Install Chart
-
+1. AMQ Streams
 1. Kafka
-2. Influxdb2
-3. Mongo
-4. PostgreSQL
-5. Create Vault issuer
-
-```
-export WILDCARD=apps.$(oc get dns cluster -o jsonpath='{.spec.baseDomain}')
-helm install ocp-install ./ocp-install --dependency-update --set issuer.wildcardDomain=${WILDCARD} --namespace manufacturing-dev
-```
-
-# OCP Service Install Chart
-
+1. Influxdb2
+1. Mongo
+1. PostgreSQL
+1. Vault issuer
 1. Event Collector service
-2. Plant Manager service
-3. Product Line service
-4. Registration service
-
-```
-helm install ocp-srv-install ./ocp-srv-install --namespace manufacturing-dev
-```
+1. Plant Manager service
+1. Product Line service
+1. Registration service
