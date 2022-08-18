@@ -68,7 +68,7 @@ clusterGroup:
       project: qiot-datacenter
       chart: vault
       repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts/
-      targetRevision: 0.0.6
+      targetRevision: 0.0.7
       overrides:
       - name: global.openshift
         value: true
