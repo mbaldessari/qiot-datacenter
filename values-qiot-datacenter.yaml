@@ -68,7 +68,7 @@ clusterGroup:
       project: qiot-datacenter
       chart: vault
       repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts/
-      targetRevision: 0.0.8
+      targetRevision: 0.0.9
       overrides:
       - name: global.openshift
         value: true
@@ -80,8 +80,6 @@ clusterGroup:
         value: true
       - name: vault.server.route.host
         value: null
-      - name: vault.server.extraEnvironmentVars.VAULT_ADDR
-        value: https://vault.hashicorp.svc.cluster.local:8200
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
 #
