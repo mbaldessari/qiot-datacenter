@@ -68,18 +68,26 @@ clusterGroup:
       project: qiot-datacenter
       chart: vault
       repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts/
-      targetRevision: 0.0.11
+      targetRevision: 0.0.12
       overrides:
       - name: global.openshift
-        value: true
-      - name: vault.init
-        value: true
-      - name: vault.enabled
-        value: true
-      - name: vault.server.route.enable
-        value: true
-      - name: vault.server.route.host
+        value: "true"
+      - name: injector.enabled
+        value: "false"
+      - name: ui.enabled
+        value: "true"
+      - name: ui.serviceType
+        value: LoadBalancer
+      - name: server.route.enabled
+        value: "true"
+      - name: server.route.host
         value: null
+      - name: server.route.tls.termination
+        value: edge
+      - name: server.image.repository
+        value: "registry.connect.redhat.com/hashicorp/vault"
+      - name: server.image.tag
+        value: "1.10.3-ubi"
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
 #
