@@ -70,23 +70,23 @@ clusterGroup:
       repoURL: https://hybrid-cloud-patterns.github.io/validated-pattern-charts/
       targetRevision: 0.0.13
       overrides:
-      - name: global.openshift
+      - name: vault.global.openshift
         value: "true"
-      - name: injector.enabled
+      - name: vault.injector.enabled
         value: "false"
-      - name: ui.enabled
+      - name: vault.ui.enabled
         value: "true"
-      - name: ui.serviceType
+      - name: vault.ui.serviceType
         value: LoadBalancer
-      - name: server.route.enabled
+      - name: vault.server.route.enabled
         value: "true"
-      - name: server.route.host
+      - name: vault.server.route.host
         value: null
-      - name: server.route.tls.termination
+      - name: vault.server.route.tls.termination
         value: edge
-      - name: server.image.repository
+      - name: vault.server.image.repository
         value: "registry.connect.redhat.com/hashicorp/vault"
-      - name: server.image.tag
+      - name: vault.server.image.tag
         value: "1.10.3-ubi"
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
