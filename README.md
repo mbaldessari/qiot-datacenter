@@ -1,7 +1,7 @@
 # Hybrid Cloud Community Pattern qiot-manufacturing-datacenter-installer
 
 This repository is based on the qiot-manufacturing-datacenter-installer that can be found in
-the https://github.com/qiot-project/qiot-manufacturing-datacenter-installer that has been
+the [qiot-data-center-installer](https://github.com/qiot-project/qiot-manufacturing-datacenter-installer) that has been
 converted to use the Validated Patterns framwork.
 
 The components in this community pattern are now installed using the openshift-gitops ArgoCD implementation.
@@ -13,12 +13,12 @@ bring about that end state.
 
 ## Prerequisites
 
-- A deployed OpenShift cluster via IPI or UPI
+  - A deployed OpenShift cluster via IPI or UPI
     - The IPI installer will create all the proper components needed to run an OpenShift cluster.
 
-- When using UPI the cluster will need access to the following services:
+  - When using UPI the cluster will need access to the following services:
     - DNS
-    - Storage 
+    - Storage
     - Configure DHCP.
     - Provision required load balancers.
     - Configure the ports for your machines.
@@ -36,23 +36,18 @@ There are two ways of deploying this community pattern.
 
 You will need to install the **make** utility in order to start the deployment from the command line.
 
-Fedora:
-```
+Fedora and Red Hat Linux:
+```sh
 sudo dnf install make
-```
-
-Red Hat Linux:
-```
-sudo yum install make
 ```
 
 You will also need to set the **KUBECONFIG** environment variable or login using the **oc login** command.
 
-```
+```sh
 export KUBECONFIG=<cluster-config-dir>/auth/kubeconfig
 ```
 
-```
+```sh
 oc login --token=<<USER_TOKEN>> --server=https://api.<<CLUSTER_ADDRESS>>:6443
 ```
 

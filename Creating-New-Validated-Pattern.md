@@ -9,11 +9,11 @@ The validated patterns framework is much more of a best practice of structuring 
 and integrating with GitOps and DevOps tools. Therefore the question really is: how do I move my successful
 architecture solution into a sustainable GitOps/DevOps framework? And that is what we are going to do in this section.
 
-*** NOTE ***
+***NOTE***
 
 This is a document that is still Work In Progress (WIP).
 
-## Namespaces and Operator Groups 
+## Namespaces and Operator Groups
 
 A Kubernetes namespace provides a mechanism to scope resources in a cluster. In OpenShift,
 a project is a Kubernetes namespace with additional annotations. Namespaces provide a unique
@@ -21,9 +21,9 @@ scope for: Named resources to avoid basic naming collisions.
 
 The **validated patterns framework** allows you to describe the namespaces the pattern requires.
 In order to have the Validated Pattern framework to create this namespace all you have to do is
-describe them in the **namespaces** section. 
+describe them in the **namespaces** section.
 
-```
+```yaml
   # The framework will create the namespace and the operator group
   namespaces:
   - manufacturing-dev
@@ -38,7 +38,7 @@ namespaces in which to generate required RBAC access for its member Operators.
 The **operatorgroupExcludes** sectrion is used in case you want to exclude an operator group from being created in
 a specified namespace.
 
-```
+```yaml
   operatorgroupExcludes:
   - <namespace>
 ```
@@ -57,7 +57,7 @@ The subscriptions section lists the operators that are needed by the validated p
 by the **Validated Patterns framework**. In the **values-qiot-datacenter.yaml** you will find the **subscriptions**
 section that will tell the framework to deploy the operators onto the OpenShift cluster.
 
-```
+```yaml
   subscriptions:
  # TODO: Allow namespace to be a list
     amqstreams-dev:
@@ -76,12 +76,12 @@ section that will tell the framework to deploy the operators onto the OpenShift 
 
 ## ArgoCD sections
 
-```
+```yaml
   projects:
   - qiot-datacenter
 ```
 
-```
+```yaml
   applications:
 
     ocp-install:
@@ -123,5 +123,3 @@ section that will tell the framework to deploy the operators onto the OpenShift 
       - name: vault.server.extraEnvironmentVars.VAULT_ADDR
         value: https://vault-internal.hashicorp.svc.cluster.local:8200
 ```
-
-
