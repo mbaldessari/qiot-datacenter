@@ -18,6 +18,12 @@ help:
 	make -f common/Makefile $*
 
 install upgrade deploy: operator-deploy #post-install ## Install or upgrade the pattern via the operator
+	@if grep -v -e '^\s\+#' "values-hub.yaml" | grep -q -e "insecureUnsealVaultInsideCluster:\s\+true"; then \
+	  echo "Skipping 'make vault-init' as we're unsealing the vault from inside the cluster"; \
+	else \
+	  make vault-init; \
+	fi
+	make load-secrets
 	echo "Installed/Upgraded"
 
 legacy-install legacy-upgrade: legacy-deploy post-install ## Install or upgrade the pattern the "old" way
@@ -33,7 +39,7 @@ test: ## Run tests
 	make ansible-lint
 	make -f common/Makefile -C common test
 	make -f common/Makefile CHARTS="$(wildcard charts/hub/*)" PATTERN_OPTS="$(CHART_OPTS)" test
-	echo Tests SUCCESSFUL
+	@echo "Tests SUCCESSFUL"
 
 helmlint:
 # no regional charts just yet: "$(wildcard charts/region/*)"
