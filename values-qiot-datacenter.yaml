@@ -9,7 +9,7 @@ clusterGroup:
   # The framework will create the namespace and the operator group
   namespaces:
   - manufacturing-dev
-  - hashicorp
+  - vault
 
   # Use only if you want to exclude an operator group from being created in
   # a specified namespace
