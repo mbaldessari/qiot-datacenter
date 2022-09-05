@@ -66,7 +66,7 @@ clusterGroup:
       name: vault
       namespace: hashicorp
       project: qiot-datacenter
-      path: charts/qiot-datacented/ocp-vault-install
+      path: charts/qiot-datacenter/ocp-vault-install
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
 #
