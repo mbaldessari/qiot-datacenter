@@ -7,7 +7,7 @@ TARGET_REPO=$(shell git remote show $(TARGET_ORIGIN) | grep Push | sed -e 's/.*U
 TARGET_BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 HUBCLUSTER_APPS_DOMAIN=$(shell oc get ingresses.config/cluster -o jsonpath={.spec.domain})
 # This is needed until supports passing 'null' variables to subcharts (see https://github.com/helm/helm/issues/9136)
-VAULT_ROUTE_HOST ?= "vault-vault.$(HUBCLUSTER_APPS_DOMAIN)"
+VAULT_ROUTE_HOST ?= "vault.$(HUBCLUSTER_APPS_DOMAIN)"
 
 # --set values always take precedence over the contents of -f
 HELM_OPTS=-f values-global.yaml --set main.git.repoURL="$(TARGET_REPO)" --set main.git.revision=$(TARGET_BRANCH) \
