@@ -17,10 +17,10 @@ help:
 %:
 	make -f common/Makefile $*
 
-install upgrade deploy: deploy post-install ## Install or upgrade the pattern via the operator
+install: deploy post-install ## Install or upgrade the pattern via the operator
 	echo "Installed/Upgraded"
 
-post-install: vault-init load-secrets configure-controller ## Post-install tasks - vault, configure_controller
+post-install: vault-init load-secrets ## Post-install tasks - vault, configure_controller
 	echo "Post-deploy complete"
 
 common-test: ## Test common
