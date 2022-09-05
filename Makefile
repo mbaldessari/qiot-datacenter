@@ -17,11 +17,8 @@ help:
 %:
 	make -f common/Makefile $*
 
-install upgrade deploy: operator-deploy #post-install ## Install or upgrade the pattern via the operator
+install upgrade deploy: deploy post-install ## Install or upgrade the pattern via the operator
 	echo "Installed/Upgraded"
-
-legacy-install legacy-upgrade: legacy-deploy post-install ## Install or upgrade the pattern the "old" way
-	echo "Installed/upgraded (Legacy target)"
 
 post-install: vault-init load-secrets configure-controller ## Post-install tasks - vault, configure_controller
 	echo "Post-deploy complete"
