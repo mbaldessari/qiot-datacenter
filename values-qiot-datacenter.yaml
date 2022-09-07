@@ -55,6 +55,11 @@ clusterGroup:
       namespace: manufacturing-dev
       project: qiot-datacenter
       path: charts/qiot-datacenter/issuer
+      ignoreDifferences:
+      - group: admissionregistration.k8s.io
+        kind: MutatingWebhookConfiguration
+        jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
 
     ocp-srv-apps:
       name: ocp-srv-apps
