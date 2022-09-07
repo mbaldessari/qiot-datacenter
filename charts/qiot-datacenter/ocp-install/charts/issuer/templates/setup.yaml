@@ -5,10 +5,10 @@ metadata:
   name: {{ include "issuer.fullname" . }}-setup
   labels:
     {{- include "issuer.labels" . | nindent 4 }}
-#  annotations:
-#    "helm.sh/hook": pre-install
-#    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
-#    "helm.sh/hook-weight": "0"
+  #annotations:
+    #"helm.sh/hook": pre-install
+    #"helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    #"helm.sh/hook-weight": "0"
   namespace: {{ .Values.issuer.vault.namespace }}
 spec:
   backoffLimit: 0
@@ -45,7 +45,7 @@ spec:
           export ROLE=${PROJECT}-$BASE_DOMAIN
           # In future create a dedicate SA during project provision
           export SERVICE_ACCOUNT=default
-          export WILDCARD_DOMAIN={{ .Values.global.localClusterDomain }}
+          export WILDCARD_DOMAIN={{ .Values.wildcardDomain }}
 
           echo "Setup on ${PROJECT}"
 

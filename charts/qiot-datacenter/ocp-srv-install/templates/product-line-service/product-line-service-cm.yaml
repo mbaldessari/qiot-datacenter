@@ -7,7 +7,7 @@ data:
     quarkus.mongodb.database=qiot_manufacturing
     quarkus.mongodb.credentials.username=qiotmanufacturing
     quarkus.mongodb.credentials.password=qiotmanufacturingpassword
-    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9093
+    kafka.bootstrap.servers=stream-service-kafka-bootstrap:9095
     kafka.security.protocol=SASL_PLAINTEXT
     kafka.sasl.jaas.config={{ .Values.productlineservice.sasl }}
     kafka.sasl.mechanism=SCRAM-SHA-512

@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 baseDomain: qiot-project.io
-wildcardDomain: "apps.qiot-datacenter-4.blueprints.rhecoeng.com"
+wildcardDomain: ""
 
 issuer:
   vault:
@@ -12,4 +12,4 @@ issuer:
     server: https://vault-internal.hashicorp.svc.cluster.local:8200
     image:
       repository: "hashicorp/vault"
-      tag: "1.11.2"
+      tag: "1.8.4"
