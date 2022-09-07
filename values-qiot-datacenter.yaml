@@ -50,17 +50,6 @@ clusterGroup:
       project: qiot-datacenter
       path: charts/qiot-datacenter/ocp-install
 
-    vault-issuer:
-      name: vault-issuer
-      namespace: manufacturing-dev
-      project: qiot-datacenter
-      path: charts/qiot-datacenter/issuer
-      ignoreDifferences:
-      - group: admissionregistration.k8s.io
-        kind: MutatingWebhookConfiguration
-        jqPathExpressions:
-        - .webhooks[]?.clientConfig.caBundle
-
     ocp-srv-apps:
       name: ocp-srv-apps
       namespace: manufacturing-dev
@@ -72,6 +61,11 @@ clusterGroup:
       namespace: hashicorp
       project: qiot-datacenter
       path: charts/qiot-datacenter/ocp-vault-install
+      ignoreDifferences:
+      - group: admissionregistration.k8s.io
+        kind: MutatingWebhookConfiguration
+        jqPathExpressions:
+        - .webhooks[]?.clientConfig.caBundle
 
 #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
 #
