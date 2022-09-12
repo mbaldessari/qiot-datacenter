@@ -70,6 +70,7 @@ spec:
   rbac:
     defaultPolicy: role:admin
   repo:
+    mountsatoken: true
     # 1. Define an emptyDir volume which will hold the custom binaries
     volumes:
     - name: custom-tools
