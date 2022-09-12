@@ -74,6 +74,30 @@ spec:
               value: {{ $.Values.global.namespace }}
             - name: global.pattern
               value: {{ $.Values.global.pattern }}
+        {{- range .extraHubClusterDomainFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.hubClusterDomain }}
+        {{- end }}
+        {{- range .extraLocalClusterDomainFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.localClusterDomain }}
+        {{- end }}
+        {{- range .extraRepoURLFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.repoURL }}
+        {{- end }}
+        {{- range .extraTargetRevisionFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.targetRevision }}
+        {{- end }}
+        {{- range .extraNamespaceFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.namespace }}
+        {{- end }}
+        {{- range .extraPatternNameFields }}
+            - name: {{ . }}
+              value: {{ $.Values.global.pattern }}
+        {{- end }}
         {{- range .overrides }}
             - name: {{ .name  }}
               value: {{ .value | quote  }}
@@ -95,7 +119,7 @@ metadata:
   - resources-finalizer.argocd.argoproj.io/foreground
 spec:
   destination:
-    name: in-cluster
+    name: {{ coalesce .clusterName "in-cluster" }}
     namespace: {{ default $namespace .namespace }}
   project: {{ .project }}
   source:
@@ -131,8 +155,30 @@ spec:
           value: {{ $.Values.global.hubClusterDomain }}
         - name: global.localClusterDomain
           value: {{ coalesce $.Values.global.localClusterDomain $.Values.global.hubClusterDomain }}
-        - name: vault.server.route.host
-          value: {{ $.Values.vault.server.route.host }}
+        {{- range .extraHubClusterDomainFields }}
+        - name: {{ . }}
+          value: {{ $.Values.global.hubClusterDomain }}
+        {{- end }}
+        {{- range .extraLocalClusterDomainFields }}
+        - name: {{ . }}
+          value: {{ $.Values.global.localClusterDomain }}
+        {{- end }}
+        {{- range .extraRepoURLFields }}
+        - name: {{ . }}
+          value: $ARGOCD_APP_SOURCE_REPO_URL
+        {{- end }}
+        {{- range .extraTargetRevisionFields }}
+        - name: {{ . }}
+          value: $ARGOCD_APP_SOURCE_TARGET_REVISION
+        {{- end }}
+        {{- range .extraNamespaceFields }}
+        - name: {{ . }}
+          value: $ARGOCD_APP_NAMESPACE
+        {{- end }}
+        {{- range .extraPatternNameFields }}
+        - name: {{ . }}
+          value: {{ $.Values.global.pattern }}
+        {{- end }}
         {{- range .overrides }}
         - name: {{ .name }}
           value: {{ .value | quote }}
@@ -151,11 +197,13 @@ spec:
   {{- if .ignoreDifferences }}
   ignoreDifferences: {{ .ignoreDifferences | toPrettyJson }}
   {{- end }}
-{{- if eq $.Values.global.options.syncPolicy "Automatic" }}
+  {{- if .syncPolicy }}
+  syncPolicy: {{ .syncPolicy | toPrettyJson }}
+  {{- else }}
   syncPolicy:
     automated: {}
     #  selfHeal: true
-{{- end }}
+  {{- end }}
 ---
 {{- end }}
 {{- end }}
