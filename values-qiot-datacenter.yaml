@@ -91,7 +91,7 @@ clusterGroup:
     vault:
       name: vault
       namespace: hashicorp
-      project: hub
+      project: qiot-datacenter
       path: common/hashicorp-vault
 
     ocp-install:
