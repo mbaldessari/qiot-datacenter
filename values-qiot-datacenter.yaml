@@ -107,7 +107,7 @@ clusterGroup:
       path: charts/qiot-datacenter/ocp-srv-install
 
     vault:
-      name: vault
+      name: vault-install
       namespace: hashicorp
       project: qiot-datacenter
       path: charts/qiot-datacenter/ocp-vault-install
