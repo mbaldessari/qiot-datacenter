@@ -71,6 +71,8 @@ spec:
     defaultPolicy: role:admin
   repo:
     mountsatoken: true
+    #serviceaccount: qiot-datacenter-gitops-argocd-server
+    serviceaccount: "{{ .Values.clusterGroup.name }}-gitops-argocd-server"
     # 1. Define an emptyDir volume which will hold the custom binaries
     volumes:
     - name: custom-tools
